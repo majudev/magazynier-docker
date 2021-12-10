@@ -70,7 +70,11 @@ fi
 
 
 # Actual config update
-echo "Updating nginx config"
+echo "Updating frontend config"
 sed -E -i 's_(var baseUrl = ").+(";)_\1'$SITE_BASEURL'\2_g' /var/www/html/magazynier/js/config.js
 sed -E -i 's_(var apiUrl = ").+(";)_\1'$SITE_APIURL'\2_g' /var/www/html/magazynier/js/config.js
-service nginx restart
+
+echo "Updating MySQL data directory"
+service mariadb stop
+sed -E -i 's_/var/lib/mysql_/data/mysql_g' /etc/mysql/mariadb.conf.d/50-server.cnf
+service mariadb start
