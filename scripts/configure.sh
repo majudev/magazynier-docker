@@ -26,6 +26,7 @@ MAIL_PORT="25"
 MAIL_USER=""
 MAIL_PASSWORD=""
 MAIL_TRANSPORT="SMTP"
+MAIL_FROM="no-reply@localhost"
 SITE_BASEURL="http://localhost/magazynier"
 SITE_APIURL="http://localhost/api"
 EOF

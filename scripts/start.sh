@@ -26,4 +26,5 @@ java -jar Magazynier.jar \
 	--smtp.user=$MAIL_USER \
 	--smtp.password=$MAIL_PASSWORD \
 	--smtp.transport=$MAIL_TRANSPORT \
+	--smtp.from="$MAIL_FROM" \
 	--smtp.baseurl="$SITE_BASEURL"
