@@ -1,5 +1,7 @@
 FROM debian:bullseye-slim
 
+EXPOSE 80/tcp
+
 RUN apt-get update && \
     apt-get upgrade && \
     apt-get install -y \
@@ -13,4 +15,10 @@ RUN apt-get update && \
 RUN apt-get install -y \
     wget unzip
 
-COPY ./scripts /scripts
+COPY ./scripts /magazynier
+COPY ./Magazynier-v0.1.1-ALPHA.zip /magazynier/Magazynier.zip
+RUN mkdir /data
+
+RUN /magazynier/init.sh
+
+CMD /magazynier/start.sh
