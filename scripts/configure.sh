@@ -29,6 +29,11 @@ MAIL_TRANSPORT="SMTP"
 MAIL_FROM="no-reply@localhost"
 SITE_BASEURL="http://localhost/magazynier"
 SITE_APIURL="http://localhost/api"
+
+START_MYSQL=yes
+START_POSTFIX=yes
+START_REDIS=yes
+START_NGINX=yes
 EOF
 	fi
 	. /data/config.sh

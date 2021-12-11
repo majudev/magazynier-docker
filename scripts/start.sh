@@ -3,11 +3,6 @@ cd "$(dirname "$0")"
 
 echo "Working in `pwd`"
 
-service nginx start
-service exim4 start
-service redis-server start
-service mariadb start
-
 ./configure.sh
 if [ ! $? -eq 0 ]; then
 	echo "Couldn't configure the system. Exiting."
@@ -16,6 +11,32 @@ fi
 
 . /data/config.sh
 
+echo "START_NGINX=$START_NGINX"
+echo "START_POSTFIX=$START_POSTFIX"
+echo "START_REDIS=$START_REDIS"
+echo "START_MYSQL=$START_MYSQL"
+
+if [[ "$START_NGINX" == "yes" ]]; then
+	service nginx start
+else
+	service nginx stop
+fi
+if [[ "$START_POSTFIX" == "yes" ]]; then
+	service postfix start
+else
+	service postfix stop
+fi
+if [[ "$START_REDIS" == "yes" ]]; then
+	service redis-server start
+else
+	service redis-server stop
+fi
+if [[ "$START_MYSQL" == "yes" ]]; then
+	service mariadb start
+else
+	service mariadb stop
+fi
+
 _term() {
 	echo "Caught SIGTERM signal!"
 	kill -s KILL "$child"
@@ -23,7 +44,7 @@ _term() {
 	service mariadb stop
 	service redis-server stop
 	service nginx stop
-	service exim4 stop
+	service postfix stop
 }
 trap _term SIGTERM
 
