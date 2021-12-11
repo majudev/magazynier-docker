@@ -16,6 +16,17 @@ fi
 
 . /data/config.sh
 
+_term() {
+	echo "Caught SIGTERM signal!"
+	kill -s KILL "$child"
+	
+	service mariadb stop
+	service redis-server stop
+	service nginx stop
+	service exim4 stop
+}
+trap _term SIGTERM
+
 echo "Starting Magazynier.jar"
 java -jar Magazynier.jar \
 	--spring.datasource.url=$MYSQL_HOST \
@@ -27,4 +38,8 @@ java -jar Magazynier.jar \
 	--smtp.password=$MAIL_PASSWORD \
 	--smtp.transport=$MAIL_TRANSPORT \
 	--smtp.from="$MAIL_FROM" \
-	--smtp.baseurl="$SITE_BASEURL"
+	--smtp.baseurl="$SITE_BASEURL" \
+	&
+
+child=$!
+wait "$child"

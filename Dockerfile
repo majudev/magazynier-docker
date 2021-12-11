@@ -21,4 +21,4 @@ RUN mkdir /data
 
 RUN /magazynier/init.sh
 
-CMD /magazynier/start.sh
+CMD ["/magazynier/start.sh"]
