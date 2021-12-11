@@ -33,5 +33,6 @@ read alter
 
 if [[ "$alter" == "y" ]]; then
 	sed -i -E 's/(Magazynier-).+(\.zip .+)/\1'$tag'\2/g' Dockerfile
+	sed -i -E 's_(majudev/magazynier:).+( )_\1'$tag'\2_g' README.md
 	echo "echo $tag" > scripts/version.sh
 fi
