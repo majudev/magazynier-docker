@@ -20,7 +20,7 @@ fi
 cd ..
 mkdir zip
 cd zip
-cp ../magazynier/build/libs/Magazynier*.jar .
+cp ../magazynier/build/libs/Magazynier*.jar Magazynier.jar
 cp ../magazynier/schema.sql .
 cp -r ../magazynier/frontend magazynier
 zip Magazynier-$tag.zip *.jar *.sql magazynier/* magazynier/*/* magazynier/*/*/*
