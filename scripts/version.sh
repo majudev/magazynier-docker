@@ -1,2 +1,1 @@
-#!/bin/bash
-echo "0.1.1-ALPHA"
+echo v0.1.3-ALPHA
