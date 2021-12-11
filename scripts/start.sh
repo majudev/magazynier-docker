@@ -15,6 +15,7 @@ echo "START_NGINX=$START_NGINX"
 echo "START_POSTFIX=$START_POSTFIX"
 echo "START_REDIS=$START_REDIS"
 echo "START_MYSQL=$START_MYSQL"
+echo "JAVA_OPTIONS=$JAVA_OPTIONS"
 
 if [[ "$START_NGINX" == "yes" ]]; then
 	service nginx start
@@ -49,7 +50,8 @@ _term() {
 trap _term SIGTERM
 
 echo "Starting Magazynier.jar"
-java -jar Magazynier.jar \
+java $JAVA_OPTIONS \
+	-jar Magazynier.jar \
 	--spring.datasource.url=$MYSQL_HOST \
 	--spring.datasource.username=$MYSQL_USER \
 	--spring.datasource.password=$MYSQL_PASSWORD \

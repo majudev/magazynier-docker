@@ -34,6 +34,7 @@ START_MYSQL=yes
 START_POSTFIX=yes
 START_REDIS=yes
 START_NGINX=yes
+JAVA_OPTIONS=""
 EOF
 	fi
 	. /data/config.sh
